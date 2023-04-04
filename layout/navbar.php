@@ -34,22 +34,49 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <form method="post"  role="form" name="ubahpass" id="ubahpass">
                 <div class="modal-body">
-                 <form method="post"  name="ubahpass" id="ubahpass">
                    <input type="hidden" name="iduser" value="<?php echo $_SESSION['id'];?>" > 
                    <label>Ubah Password</label>                               
-                    <input type="password" name="password1" id="password1" class="form-control">     
+                    <input type="password" name="password1" id="password1" class="form-control" required>     
                     <br> 
                     <label>Konfirmasi Password</label>                               
-                    <input type="password" name="password2" id="password2" class="form-control">                           
+                    <input type="password" name="password2" id="password2" class="form-control" required>                           
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <button type="submit" style = "float:right;" class="btn btn-primary" name="ubahpw">Yes</button>
-                </div>
-				
-				
+                </div>	
                 </form>   
             </div>
         </div>
-    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $("#ubahpass").validate({
+        rules: {
+            password1: {
+                required: true,
+                minlength: 8
+            },
+            password2: {
+                minlength: 8,
+                equalTo: "#password1"
+            },
+        action: "required"
+        },
+        messages: {
+            password1: {
+                required: "Please enter some data",
+                minlength: "Your data must be at least 8 characters"
+            },
+            password2: {
+                minlength: "Your data must be at least 8 characters",
+                equalTo: "Different Password"
+            },
+            action: "Please provide some data"
+        }
+    });
+</script>
