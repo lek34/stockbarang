@@ -115,6 +115,48 @@ require 'config/config.php'
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function (e) {
+            const form = document.getElementById('ubahpass');
+            const fv = FormValidation.formValidation(form, {
+                fields: {
+                    password1: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The password is required',
+                            },
+                        },
+                    },
+                    password2: {
+                        validators: {
+                            identical: {
+                                compare: function () {
+                                    return form.querySelector('[name="password1"]').value;
+                                },
+                                message: 'The password and its confirm are not the same',
+                            },
+                        },
+                    },
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap(),
+                    submitButton: new FormValidation.plugins.SubmitButton(),
+                    icon: new FormValidation.plugins.Icon({
+                        valid: 'fa fa-check',
+                        invalid: 'fa fa-times',
+                        validating: 'fa fa-refresh',
+                    }),
+                },
+            });
+
+            // Revalidate the confirmation password when changing the password
+            form.querySelector('[name="password1"]').addEventListener('input', function () {
+                fv.revalidateField('password2');
+            });
+        });
+    </script>
     </body>
      <!-- The Modal -->
   <div class="modal fade" id="myModal">

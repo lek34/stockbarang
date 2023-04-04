@@ -17,9 +17,39 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item"   href="profil.php"><i class="fa-regular fa-user"></i> <?php echo $_SESSION['name'];?></a>
+                        <a class="dropdown-item"   href="#" data-target="#ubahpw" data-toggle="modal"><i class="fa-regular fa-user"></i> Ganti Password</a>
                         <a class="dropdown-item"   href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                     </div>
                 </li>
             </ul>
         </nav>
+        
+        <div class="modal fade" id="ubahpw" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Password</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 <form method="post"  name="ubahpass" id="ubahpass">
+                   <input type="hidden" name="iduser" value="<?php echo $_SESSION['id'];?>" > 
+                   <label>Ubah Password</label>                               
+                    <input type="password" name="password1" id="password1" class="form-control">     
+                    <br> 
+                    <label>Konfirmasi Password</label>                               
+                    <input type="password" name="password2" id="password2" class="form-control">                           
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" style = "float:right;" class="btn btn-primary" name="ubahpw">Yes</button>
+                </div>
+				
+				
+                </form>   
+            </div>
+        </div>
+    </div>
