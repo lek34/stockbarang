@@ -77,6 +77,9 @@
                 equalTo: "Different Password"
             },
             action: "Please provide some data"
+        },
+        invalidHandler: function() {
+            $("#ubahpass button[type='submit']").prop("disabled", true);
         }
     });
 </script>
