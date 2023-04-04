@@ -111,7 +111,7 @@ if(isset($_POST['tambahsupplier'])){
     $addtosupplier = mysqli_query($conn, "INSERT INTO supplier (namasup,alamat,notelp) VALUES ('$namasupplier','$alamat','$tel')");
 
     if($addtosupplier){
-        header('location:supplier.php');
+        header('location:supplier.php?alert=1');
     }
     else{
         header('location:supplier.php');
@@ -127,7 +127,7 @@ if(isset($_POST['updsup'])){
     $updsup = mysqli_query($conn, "UPDATE supplier set namasup = '$namasupplier' , alamat = '$alamat' , notelp = '$tel' WHERE idsup = '$idupdt'");
 
     if($updsup){
-        header('location:supplier.php');
+        header('location:supplier.php?alert=3');
     }
     else{
         header('location:supplier.php');
@@ -139,12 +139,29 @@ if(isset($_POST['hapussupplier'])){
     $updsup = mysqli_query($conn, "DELETE FROM supplier WHERE idsup = '$idupdt'");
 
     if($updsup){
-        header('location:supplier.php');
+        header('location:supplier.php?alert=4');
     }
     else{
         header('location:supplier.php');
     }
 }
+
+
+if(isset($_POST['ubahpw'])){
+    $id = $_POST['iduser'];
+    $password1 = $_POST['password1'];
+	$password2 = $_POST['password2'];
+	
+	if ($password1 == $password2){
+		$ubahpw = mysqli_query($conn, "UPDATE login set password = '$password2' where iduser = '$id' ");
+		header('location:dashboard.php');		
+	}else{
+		header('location:dashboard.php');	
+	}
+
+
+}
+
 
 
 ?>
