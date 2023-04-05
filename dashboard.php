@@ -118,7 +118,22 @@ require 'config/config.php'
                                     </div>
                                 </div>
                             </div>
+                            
+                            
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar mr-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="bargraph" width="100%" height="50"></canvas></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
+                </div>
+                
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -143,6 +158,36 @@ require 'config/config.php'
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
+        <script src="text/javascript">
+            var ctx = document.getElementById("bargraph").getContext("2d");
+            var mychart = new Chart (ctx,{
+                type : 'bar',
+                data : {
+                    labels:<?php echo json_encode($barangkeluar);?>,
+                    datasets: [{
+                        backgroundcolor : [
+                            "#5969ff",
+                            "#5945fd",
+                            "#25d5f2",
+                            "#2ec551",
+                            "#ff044e",
+                        ],
+                        data : <?php echo json_encode($totalkeluar);?>
+                    }]
+                },
+                options : {
+                    legend: {
+                        display : true,
+                        position: 'bottom',
+                        labels : {
+                            fontColor: '#71748d',
+                            fontFamily : 'Circular Std Bold',
+                            fontSize: 14,
+                        }
+                    },
+                }
+            });
+        </script>
     </body>
      <!-- The Modal -->
   <div class="modal fade" id="myModal">
