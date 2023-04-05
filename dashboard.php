@@ -119,7 +119,18 @@ require 'config/config.php'
                                 </div>
                             </div>
                             
-                            
+                            <?php  
+                                    // fungsi query untuk menampilkan data dari tabel obat
+                                    $query = mysqli_query($conn, "SELECT * from keluar m, stock s where s.idbarang = m.idbarang")
+                                                                    or die('Ada kesalahan pada query tampil Data: '.mysqli_error($mysqli));
+                                    // tampilkan data
+                                    $chart_data = "";
+                                    while($row = mysqli_fetch_array($query)){
+                                    $productname[] = $row['namabarang'];
+                                    $sales[] = $row['quantity'];
+}
+                                    ?>
+
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
@@ -149,21 +160,12 @@ require 'config/config.php'
                 </footer>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/datatables-demo.js"></script>
-        <script src="text/javascript">
+        <script type="text/javascript">
             var ctx = document.getElementById("bargraph").getContext("2d");
             var mychart = new Chart (ctx,{
                 type : 'bar',
                 data : {
-                    labels:<?php echo json_encode($barangkeluar);?>,
+                    labels:<?php echo json_encode($productname);?>,
                     datasets: [{
                         backgroundcolor : [
                             "#5969ff",
@@ -172,7 +174,7 @@ require 'config/config.php'
                             "#2ec551",
                             "#ff044e",
                         ],
-                        data : <?php echo json_encode($totalkeluar);?>
+                        data : <?php echo json_encode($sales);?>
                     }]
                 },
                 options : {
@@ -188,6 +190,16 @@ require 'config/config.php'
                 }
             });
         </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+        
     </body>
      <!-- The Modal -->
   <div class="modal fade" id="myModal">
