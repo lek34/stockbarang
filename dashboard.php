@@ -31,7 +31,7 @@ require 'config/config.php'
             ?>
             <div id="layoutSidenav_content">
                 <main>
-                <div class="container-fluid">
+                    <div class="container-fluid">
                         <h1 class="mt-4 mb-4">Dashboard</h1>
                         
                         <div class="alert alert-info alert-dismissable mb-4">
@@ -40,7 +40,7 @@ require 'config/config.php'
                                 <i class="icon fa fa-user"></i> Selamat datang <strong><?php echo $_SESSION['name']; ?></strong> di Website IMS.
                             </p>        
                         </div>
-                       
+                        
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
@@ -117,23 +117,9 @@ require 'config/config.php'
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            
+                            </div>    
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="bargraph" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                </div>
-                            </div>
-                </div>
-                
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -152,42 +138,9 @@ require 'config/config.php'
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
-        <script src="text/javascript">
-            var ctx = document.getElementById("bargraph").getContext("2d");
-            var mychart = new Chart (ctx,{
-                type : 'bar',
-                data : {
-                    labels:<?php echo json_encode($barangkeluar);?>,
-                    datasets: [{
-                        backgroundcolor : [
-                            "#5969ff",
-                            "#5945fd",
-                            "#25d5f2",
-                            "#2ec551",
-                            "#ff044e",
-                        ],
-                        data : <?php echo json_encode($totalkeluar);?>
-                    }]
-                },
-                options : {
-                    legend: {
-                        display : true,
-                        position: 'bottom',
-                        labels : {
-                            fontColor: '#71748d',
-                            fontFamily : 'Circular Std Bold',
-                            fontSize: 14,
-                        }
-                    },
-                }
-            });
-        </script>
     </body>
      <!-- The Modal -->
   <div class="modal fade" id="myModal">

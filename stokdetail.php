@@ -36,6 +36,7 @@ require 'config/config.php'
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
+                                                <th>Departemen</th>
                                                 <th>Masuk</th>
                                                 <th>Keluar</th>
                                                 <th>Sisa</th>
@@ -56,15 +57,20 @@ require 'config/config.php'
                                             $jenis = $data['jenis'];
                                             $masuk =0; $keluar=0;
                                             if($jenis=="masuk"){
+                                              $ambildatasupplier = mysqli_query($conn,"SELECT * FROM supplier p,qstock r WHERE p.idsup = r.supplier");
+                                                $datasup = mysqli_fetch_array($ambildatasupplier);
+                                                $departemen = $datasup['namasup'];
                                                 $masuk = $data['quantity'];
                                             }
                                             if($jenis=="keluar"){
+                                                $departemen = $data['supplier'];
                                                 $keluar = $data['quantity']*-1;
                                             }
                                             $sisa = $sisa + $masuk - $keluar;  
                                             echo"
                                                 <tr>
                                                     <td>$tanggal</td>
+                                                    <td>$departemen</td>
                                                     <td>$masuk</td>
                                                     <td>$keluar</td>
                                                     <td>$sisa</td>
