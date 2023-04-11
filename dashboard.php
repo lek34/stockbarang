@@ -160,36 +160,6 @@ require 'config/config.php'
                 </footer>
             </div>
         </div>
-        <script type="text/javascript">
-            var ctx = document.getElementById("bargraph").getContext("2d");
-            var mychart = new Chart (ctx,{
-                type : 'bar',
-                data : {
-                    labels:<?php echo json_encode($productname);?>,
-                    datasets: [{
-                        backgroundcolor : [
-                            "#5969ff",
-                            "#5945fd",
-                            "#25d5f2",
-                            "#2ec551",
-                            "#ff044e",
-                        ],
-                        data : <?php echo json_encode($sales);?>
-                    }]
-                },
-                options : {
-                    legend: {
-                        display : true,
-                        position: 'bottom',
-                        labels : {
-                            fontColor: '#71748d',
-                            fontFamily : 'Circular Std Bold',
-                            fontSize: 14,
-                        }
-                    },
-                }
-            });
-        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
