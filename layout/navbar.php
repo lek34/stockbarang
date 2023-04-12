@@ -45,7 +45,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <input type="submit" id="submit" style = "float:right;" class="btn btn-primary" name="submit" value="Yes"></input>
+                    <input type="submit" id="submit" style = "float:right;" class="btn btn-primary" name="ubahpw" value="Yes"></input>
                 </div>	
                 </form>   
             </div>
