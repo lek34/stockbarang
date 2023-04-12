@@ -60,6 +60,11 @@ require 'config/config.php'
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                 <i class="fa fa-plus-square"></i> Tambah Item
                                 </button>
+                                <a href="cetak.php" target="_blank">
+                                <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-print"></i> Cetak Report
+                                </button>
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -74,7 +79,7 @@ require 'config/config.php'
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * , (select sum(quantity) from qstock where idbarang = stock.idbarang) as jumlah  FROM stock");
+                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT *, COALESCE((SELECT SUM(quantity) FROM qstock WHERE idbarang = stock.idbarang), 0) AS jumlah FROM stock");
                                                 while($data=mysqli_fetch_array($ambilsemuadatastock)){
                                                     $idbarang = $data['idbarang'];
                                                     $namabarang = $data['namabarang'];
