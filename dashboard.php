@@ -75,7 +75,7 @@ require 'config/config.php'
                                         Jumlah : <?php echo $data['jumlah']; ?>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="masuk.php">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@ require 'config/config.php'
                                         Jumlah : <?php echo $data['jumlah']; ?>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="keluar.php">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -113,13 +113,33 @@ require 'config/config.php'
                                         Jumlah : <?php echo $data['jumlah']; ?>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="supplier.php">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                             </div>    
                         </div>
                     </div>
+=======
+                            </div>
+                            
+                            <?php  
+                                    // fungsi query untuk menampilkan data dari tabel obat
+                                    $query = mysqli_query($conn, "SELECT * from keluar m, stock s where s.idbarang = m.idbarang")
+                                                                    or die('Ada kesalahan pada query tampil Data: '.mysqli_error($mysqli));
+                                    // tampilkan data
+                                    $chart_data = "";
+                                    while($row = mysqli_fetch_array($query)){
+                                    $productname[] = $row['namabarang'];
+                                    $sales[] = $row['quantity'];
+}
+                                    ?>
+
+                        </div>
+                </div>
+                
+>>>>>>> ba296a4098ec1b03e6a4e201c45052d45a2c6a6d
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -141,6 +161,10 @@ require 'config/config.php'
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
+<<<<<<< HEAD
+=======
+        
+>>>>>>> ba296a4098ec1b03e6a4e201c45052d45a2c6a6d
     </body>
      <!-- The Modal -->
   <div class="modal fade" id="myModal">
