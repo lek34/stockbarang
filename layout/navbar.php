@@ -45,41 +45,49 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" style = "float:right;" class="btn btn-primary" name="ubahpw">Yes</button>
+                    <input type="submit" id="submit" style = "float:right;" class="btn btn-primary" name="submit" value="Yes"></input>
                 </div>	
                 </form>   
             </div>
         </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script>
-    $("#ubahpass").validate({
-        rules: {
-            password1: {
-                required: true,
-                minlength: 8
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script type="text/javascript">
+        $("#ubahpass").validate({
+            
+            rules: {
+                password1: {
+                    required: true,
+                    minlength: 8
+                },
+                password2: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#password1"
+                },
+            action: "required"
             },
-            password2: {
-                minlength: 8,
-                equalTo: "#password1"
-            },
-        action: "required"
-        },
-        messages: {
-            password1: {
-                required: "Please enter some data",
-                minlength: "Your data must be at least 8 characters"
-            },
-            password2: {
-                minlength: "Your data must be at least 8 characters",
-                equalTo: "Different Password"
-            },
-            action: "Please provide some data"
-        },
-        invalidHandler: function() {
-            $("#ubahpass button[type='submit']").prop("disabled", true);
-        }
-    });
+            messages: {
+                password1: {
+                    required: "<p style='color:red;'>Please enter your password<p>",
+                    minlength: "<p style='color:red;'>Your password must be at least 8 characters<p>"
+                },
+                password2: {
+                    required: "<p style='color:red;'>Please enter your password<p>",
+                    minlength: "<p style='color:red;'>Your password must be at least 8 characters<p>",
+                    equalTo: "<p style='color:red;'>Password didn't match<p>"
+                },
+                action: "Please provide some data"
+            }
+        });
+        // if ($('#ubahpass').valid()) {
+        //     $('#submit').prop('disabled', false); 
+        // } 
+        // else{
+        //     $('#submit').prop('disabled', true); 
+        // }
 </script>
