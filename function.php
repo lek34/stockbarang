@@ -37,7 +37,7 @@ if(isset($_POST['barangmasuk'])){
     $tambahkanqty = $stocksekarang+$qty;
 
     $addtomasuk = mysqli_query($conn, "INSERT INTO masuk (idbarang,supplier,quantity) values ('$barangnya','$supplier','$qty')");
-
+    $updatebarang = mysqli_query($conn, "UPDATE stock set stock = '$tambahkanqty' where idbarang = '$barangnya'");
 
     if($addtomasuk){
         header('location:masuk.php?alert=1');
@@ -65,9 +65,9 @@ if(isset($_POST['barangkeluar'])){
     }
 
     $addtokeluar = mysqli_query($conn, "INSERT INTO keluar (idbarang,penerima,kondisi,quantity) values ('$barang','$penerima','$kondisi','$qty')");
+    $updatebarang = mysqli_query($conn, "UPDATE stock set stock = '$kurangqty' where idbarang = '$barangnya'");
 
-
-    if($addtokeluar&&$updatestockkeluar){
+    if($addtokeluar&&$updatebarang){
         header('location:keluar.php?alert=1');
     }
 
