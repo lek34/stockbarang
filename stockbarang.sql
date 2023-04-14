@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2023 at 03:10 AM
+-- Generation Time: Apr 14, 2023 at 02:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `keluar` (
 --
 
 INSERT INTO `keluar` (`idkeluar`, `idbarang`, `tanggal`, `penerima`, `kondisi`, `quantity`) VALUES
-(1, 1, '2023-03-21 04:53:52', 'Ahmad', 'Bagus', 15);
+(1, 1, '2023-03-21 04:53:52', 'Ahmad', 'Bagus', 15),
+(2, 1, '2023-04-14 12:13:10', 'ALEK', 'Bagus', 10);
 
 -- --------------------------------------------------------
 
@@ -60,11 +61,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`iduser`, `email`, `password`) VALUES
-(1, 'Admin', '8888'),
-(2, 'Friska', '1'),
-(3, 'Angeline', '1'),
-(4, 'Jacky', '1'),
-(5, 'Sully', '1');
+(1, 'Admin', 'asf');
 
 -- --------------------------------------------------------
 
@@ -86,7 +83,9 @@ CREATE TABLE `masuk` (
 
 INSERT INTO `masuk` (`idmasuk`, `idbarang`, `tanggal`, `supplier`, `quantity`) VALUES
 (1, 1, '2023-03-21 04:53:30', '3', 50),
-(2, 1, '2023-03-21 04:58:57', '3', 10);
+(2, 1, '2023-03-21 04:58:57', '3', 10),
+(3, 1, '2023-04-14 12:11:46', '3', 10),
+(4, 1, '2023-04-14 12:11:58', '3', 10);
 
 -- --------------------------------------------------------
 
@@ -122,7 +121,7 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`idbarang`, `namabarang`, `deskripsi`, `stock`, `stats`) VALUES
-(1, 'Gerdang', 'Bagus', 70, 'Y');
+(1, 'Gerdang', 'Bagus', 90, 'Y');
 
 -- --------------------------------------------------------
 
@@ -195,7 +194,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `keluar`
 --
 ALTER TABLE `keluar`
-  MODIFY `idkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idkeluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -207,7 +206,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `masuk`
 --
 ALTER TABLE `masuk`
-  MODIFY `idmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idmasuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `stock`
