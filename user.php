@@ -18,7 +18,7 @@ require 'config/config.php'
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Barang Keluar</h1>
+                        <h1 class="mt-4">User Manajemen</h1>
                         <?php  
                             // fungsi untuk menampilkan pesan
                             // jika alert = "" (kosong)
@@ -37,14 +37,14 @@ require 'config/config.php'
                                 echo "<div class='alert alert-danger alert-dismissable'>
                                         <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
                                         <h4>  <i class='icon fa fa-times-circle'></i> Gagal !</h4>
-                                        Stok yang ingin ditambahkan tidak mencukupi!!
+                                        User tidak berhasil ditambahkan!!
                                     </div>";
                             }
                             ?>
                         <div class="card mb-4">
                             <div class="card-header">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                <i class="fa fa-plus-square"></i> Update Barang Keluar
+                                <i class="fa fa-plus-square"></i> Tambah User
                                 </button>
                             </div>
                             <div class="card-body">
@@ -52,29 +52,32 @@ require 'config/config.php'
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Tanggal</th>
-                                                <th>Nama Barang</th>
-                                                <th>Departemen</th>
-                                                <th>Kondisi</th>
-                                                <th>Qty</th>
+                                                <th>no</th>
+                                                <th>Username</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>Password</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                                $ambilsemuadatastock = mysqli_query($conn,"SELECT * from keluar m, stock s where s.idbarang = m.idbarang");
-                                                while($data=mysqli_fetch_array($ambilsemuadatastock)){
-                                                    $tanggal = $data['tanggal'];
-                                                    $namabarang = $data['namabarang'];
-                                                    $deskripsi = $data['penerima'];
-                                                    $kondisi = $data['kondisi']; 
-                                                    $quantity = $data['quantity'];    
+                                                $ambilsemuadatalogin = mysqli_query($conn,"SELECT * from login");
+                                                while($data=mysqli_fetch_array($ambilsemuadatalogin)){
+                                                    $iduser = $data['iduser'];
+                                                    $username = $data['username'];
+                                                    $nama = $data['nama'];
+                                                    $email= $data['email'];
+                                                    $password = $data['password']; 
+                                                    $status = $data['status'];    
                                             ?>
                                                 <tr>
-                                                    <td><?=$tanggal?></td>
-                                                    <td><?=$namabarang?></td>
-                                                    <td><?=$deskripsi?></td>
-                                                    <td><?=$kondisi?></td>
-                                                    <td><?=$quantity?></td>
+                                                    <td><?=$iduser?></td>
+                                                    <td><?=$username?></td>
+                                                    <td><?=$nama?></td>
+                                                    <td><?=$email?></td>
+                                                    <td><?=$password?></td>
+                                                    <td><?=$status?></td>
                                                 </tr>
 
                                             <?php
@@ -118,39 +121,87 @@ require 'config/config.php'
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Barang Keluar</h4>
+          <h4 class="modal-title">Tambah User</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        <form method="post" role="form" name="tambahuser" id="tambahuser">
         
         <!-- Modal body -->
         <div class="modal-body">
             <br>
-            <form method="post">
-                <select name="barang" class="form-control">
-                    <?php
-                        $pilihanbarang = mysqli_query($conn,"select * from stock");
-                        while($fetcharray = mysqli_fetch_array($pilihanbarang)){
-                            $namabarang = $fetcharray['namabarang'];
-                            $idbarang = $fetcharray['idbarang'];
-                    ?>
-                    <option value="<?=$idbarang;?>"><?=$namabarang;?></option>
-                <?php
-                    }
-                ?>
+                <br>
+                <input type="text" name="username" id="username" placeholder="Username" class="form-control" required>
+                <br>
+                <input type="text" name="nama" id="nama" placeholder="Nama" class="form-control" required>
+                <br>
+                <input type="text" name="email" id="email" placeholder="Email" class="form-control" required>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                <br>
+                <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" class="form-control" required>
+                <br>
+                <select name="status" class="form-control" >
+                    <option value="admin">Admin</option>
+                    <option value="non">Non Admin</option>
                 </select>
-                <br>
-                <input type="number" name="qty" placeholder="Quantity" class="form-control" required>
-                <br>
-                <input type="text" name="penerima" placeholder="Bagian" class="form-control" required>
-                <br>
-                <input type="text" name="kondisi" placeholder="Kondisi" class="form-control" required>
-                <br>
-                <button type="submit" class="btn btn-primary" name="barangkeluar">Submit</button>
-            </form> 
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" name="tambahuser" value="Tambah User"></input>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
+        </form> 
+
 </html>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script type="text/javascript">
+    $("#tambahuser").validate({
+        rules: {
+            username:{
+                required: true,
+            },
+            nama: {
+                required: true,
+            },
+            email:{
+                required: true,
+            },
+            password: {
+                required: true,
+                minlength: 8
+            },
+            cpassword: {
+                required: true,
+                minlength: 8,
+                equalTo: "#password"
+            },
+        action: "required"
+        },
+        messages: {
+            username:{
+                required: "<p style='color:red;'>Please enter your username</p>",
+            },
+            nama: {
+                required: "<p style='color:red;'>Please enter your name</p>",
+            },
+            email:{
+                required: "<p style='color:red;'>Please enter your email</p>"
+            },
+            password: {
+                required: "<p style='color:red;'>Please enter your password</p>",
+                minlength: "<p style='color:red;'>Your password must be at least 8 characters</p>"
+            },
+            cpassword: {
+                required: "<p style='color:red;'>Please enter your password</p>",
+                minlength: "<p style='color:red;'>Your password must be at least 8 characters</p>",
+                equalTo: "<p style='color:red;'>Password didn't match</p>"
+            },
+            action: "Please provide some data"
+        }
+    });
+</script>

@@ -7,6 +7,10 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-dashboard"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="user.php">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-user-circle"></i></div>
+                                User
+                            </a>
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                                 Stock Barang 

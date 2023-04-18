@@ -73,6 +73,24 @@ if(isset($_POST['barangkeluar'])){
 
 }
 
+if(isset($_POST['tambahuser'])){
+    $username = $_POST['username'];
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $status = $_POST['status'];
+
+ 
+    $addtologin = mysqli_query($conn, "INSERT INTO login (username,nama,email,password,status) values ('$username','$nama','$email','$password','$status')");
+
+    if($addtologin){
+        header('location:user.php?alert=1');
+    }
+    else{
+        header('location:user.php?alert=2');
+    }
+}
+
 if(isset($_POST['updatebarang'])){
     $idupdt = $_POST['idbaranghapus'];
     $namabarang = $_POST['namabarang'];
