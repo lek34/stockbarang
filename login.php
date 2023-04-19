@@ -2,26 +2,45 @@
 require 'function.php';
 //cek login terdaftar apa tidak
 if(isset($_POST['login'])){
-    $nama = $_POST['nama'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
     
-//cek database
-    $cekdatabase = mysqli_query($conn,"Select * from login where email='$nama' and password='$password'");
-    //hitung jumlah data
+    $cekdatabase = mysqli_query($conn,"SELECT * FROM login WHERE username='$username'");
     $hitung = mysqli_num_rows($cekdatabase);
     if($hitung>0){
-        session_start();
-        while($data=mysqli_fetch_array($cekdatabase)){
-            $_SESSION['name']=$data['email'];
-            $_SESSION['id']=$data['iduser'];
+        while($data=mysqli_fetch_assoc($cekdatabase)){
+            $hash = hash('sha256',$password);
+            if($hash == $data['password']){
+                session_start();
+                $_SESSION['username'] = $data['username'];
+                $_SESSION['id'] = $data['iduser'];
+                $_SESSION['log']="True";
+                header('location:dashboard.php?alert=1');
+            }
+            else{
+                header('location:login.php?alert=2');
+            }
         }
-        $_SESSION['log']='True';
-        header('location:dashboard.php?alert=1');
-    }
-    else{
+    }else{
         header('location:login.php?alert=2');
-    };
+    }
     
+//cek database
+    // $cekdatabase = mysqli_query($conn,"Select * from login where username='$username' and password='$password'");
+    // //hitung jumlah data
+    // $hitung = mysqli_num_rows($cekdatabase);
+    //     if($hitung>0){
+    //         while($data=mysqli_fetch_array($cekdatabase)){
+    //             session_start();
+    //             $_SESSION['username']=$data['username'];
+    //             $_SESSION['id']=$data['iduser'];
+    //         }
+    //         $_SESSION['log']='True';
+    //         header('location:dashboard.php?alert=1'); 
+    //     }
+    //     else{
+    //         header('location:login.php?alert=2');
+    //     };
 };
 
 if(!isset($_SESSION['log'])){
@@ -74,6 +93,7 @@ if(!isset($_SESSION['log'])){
                             // jika alert = 2
                             // tampilkan pesan Sukses "Anda telah berhasil logout"
                             elseif ($_GET['alert'] == 3) {
+                                
                                 echo "<div class='alert alert-success alert-dismissable'>
                                         <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
                                         <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
@@ -86,12 +106,12 @@ if(!isset($_SESSION['log'])){
                                     <div class="card-body">
                                         <form method="post">
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputEmailAddress">Nama</label>
-                                                <input class="form-control py-4" name="nama" id="inputEmailAddress" type="text" placeholder="Enter email address"/>
+                                                <label class="small mb-1" for="inputUsername">Nama</label>
+                                                <input class="form-control py-4" name="username" id="inputUsername" type="text" placeholder="Enter Username"/>
                                             </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Enter password" />
+                                                <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Enter Password" />
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

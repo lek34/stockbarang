@@ -77,9 +77,9 @@ if(isset($_POST['tambahuser'])){
     $username = $_POST['username'];
     $nama = $_POST['nama'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = hash('sha256',$password);
     $status = $_POST['status'];
-
+    
  
     $addtologin = mysqli_query($conn, "INSERT INTO login (username,nama,email,password,status) values ('$username','$nama','$email','$password','$status')");
 

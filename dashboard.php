@@ -37,7 +37,7 @@ require 'config/config.php'
                         <div class="alert alert-info alert-dismissable mb-4">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <p style="font-size:15px">
-                                <i class="icon fa fa-user"></i> Selamat datang <strong><?php echo $_SESSION['name']; ?></strong> di Website IMS.
+                                <i class="icon fa fa-user"></i> Selamat datang <strong><?php echo $_SESSION['username']; ?></strong> di Website IMS.
                             </p>        
                         </div>
                         
