@@ -1,3 +1,8 @@
+<?php 
+      $hak_akses = isset($_SESSION["hak_akses"]) ? $_SESSION["hak_akses"]  : '';
+    
+
+if ($hak_akses =='admin') { ?>
 <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
@@ -35,4 +40,7 @@
                             </a>
                 </nav>
 </div>
+<?php
+      }
+    ?>
 

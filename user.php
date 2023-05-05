@@ -52,12 +52,10 @@ require 'config/config.php'
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>no</th>
-                                                <th>Username</th>
+                                                
                                                 <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Password</th>
-                                                <th>Status</th>
+                                                <th>Hak Akses</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,19 +63,15 @@ require 'config/config.php'
                                                 $ambilsemuadatalogin = mysqli_query($conn,"SELECT * from login");
                                                 while($data=mysqli_fetch_array($ambilsemuadatalogin)){
                                                     $iduser = $data['iduser'];
-                                                    $username = $data['username'];
-                                                    $nama = $data['nama'];
                                                     $email= $data['email'];
-                                                    $password = $data['password']; 
-                                                    $status = $data['status'];    
+                                                    $password = $data['hak_akses']; 
+                                                     
                                             ?>
                                                 <tr>
-                                                    <td><?=$iduser?></td>
-                                                    <td><?=$username?></td>
-                                                    <td><?=$nama?></td>
+                                                    
                                                     <td><?=$email?></td>
                                                     <td><?=$password?></td>
-                                                    <td><?=$status?></td>
+                                                    
                                                 </tr>
 
                                             <?php

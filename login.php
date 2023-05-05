@@ -1,47 +1,50 @@
-<?php
+//<?php
 require 'function.php';
 //cek login terdaftar apa tidak
 if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    $cekdatabase = mysqli_query($conn,"SELECT * FROM login WHERE username='$username'");
-    $hitung = mysqli_num_rows($cekdatabase);
-    if($hitung>0){
-        while($data=mysqli_fetch_assoc($cekdatabase)){
-            $hash = hash('sha256',$password);
-            if($hash == $data['password']){
-                session_start();
-                $_SESSION['username'] = $data['username'];
-                $_SESSION['id'] = $data['iduser'];
-                $_SESSION['log']="True";
-                header('location:dashboard.php?alert=1');
-            }
-            else{
-                header('location:login.php?alert=2');
-            }
-        }
-    }else{
-        header('location:login.php?alert=2');
-    }
+ //   $cekdatabase = mysqli_query($conn,"SELECT * FROM login WHERE username='$username' and password='$password'");
+ //   $hitung = mysqli_num_rows($cekdatabase);
+//    if($hitung>0){
+ //       while($data=mysqli_fetch_assoc($cekdatabase)){
+  //          $hash = hash('sha256',$password);
+   //         if($hash == $data['password']){
+    //            session_start();
+   //             $_SESSION['username'] = $data['username'];
+  //              $_SESSION['id'] = $data['iduser'];
+  //              $_SESSION['hakakses'] = $data['hak_akses'];
+  //              $_SESSION['log']="True";
+  //              header('location:dashboard.php?alert=1');
+  //          }
+  //          else{
+ //               header('location:login.php?alert=2');
+ //           }
+ //       }
+ //   }else{
+ //       header('location:login.php?alert=2');
+//   }
     
 //cek database
-    // $cekdatabase = mysqli_query($conn,"Select * from login where username='$username' and password='$password'");
-    // //hitung jumlah data
-    // $hitung = mysqli_num_rows($cekdatabase);
-    //     if($hitung>0){
-    //         while($data=mysqli_fetch_array($cekdatabase)){
-    //             session_start();
-    //             $_SESSION['username']=$data['username'];
-    //             $_SESSION['id']=$data['iduser'];
-    //         }
-    //         $_SESSION['log']='True';
-    //         header('location:dashboard.php?alert=1'); 
-    //     }
-    //     else{
-    //         header('location:login.php?alert=2');
-    //     };
-};
+     $cekdatabase = mysqli_query($conn,"Select * from login where email='$username' and password='$password'");
+    // hitung jumlah data
+     $hitung = mysqli_num_rows($cekdatabase);
+         if($hitung>0){
+             while($data=mysqli_fetch_array($cekdatabase)){
+                session_start();
+                $_SESSION['username']=$data['username'];
+                 $_SESSION['id']=$data['iduser'];
+                 $_SESSION['hak_akses']=$data['hak_akses'];
+            }
+            $_SESSION['log']='True';
+            header('location:dashboard.php?alert=1'); 
+        }
+        else{
+            header('location:login.php?alert=2');
+     };
+    }
+
 
 if(!isset($_SESSION['log'])){
 
